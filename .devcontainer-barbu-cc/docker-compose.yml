@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  nodejs:
+    image: node:${NODE_VERSION}
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    command: bash -c "npm install depcheck --location=global  --force && sleep infinity"
+    tty: true
+    working_dir: '/var/www/html'
+    volumes:
+      - '../.:/var/www/html'
+    networks:
+      - node
+    container_name: ${APP_NAME}_nodejs
+
+networks:
+  node:
+    driver: bridge
