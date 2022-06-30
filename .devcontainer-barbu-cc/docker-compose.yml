@@ -12,9 +12,9 @@ services:
     volumes:
       - '../.:/var/www/html'
     networks:
-      - node
+      - devcontainer-cms-barbu-cc_strapi
     container_name: ${APP_NAME}_nodejs
 
 networks:
-  node:
-    driver: bridge
+  devcontainer-cms-barbu-cc_strapi:
+    external: true
