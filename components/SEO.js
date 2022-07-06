@@ -75,15 +75,15 @@ export const BlogSEO = ({
   authorDetails,
   title,
   summary,
-  date,
-  lastmod,
+  publishedAt,
+  updatedAt,
   url,
   images = [],
   canonicalUrl,
 }) => {
   const router = useRouter()
-  const publishedAt = new Date(date).toISOString()
-  const modifiedAt = new Date(lastmod || date).toISOString()
+  const publishedAtDate = new Date(publishedAt);
+  const modifiedAt = new Date(updatedAt || publishedAt);
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
@@ -100,16 +100,14 @@ export const BlogSEO = ({
 
   let authorList
   if (authorDetails) {
-    authorList = authorDetails.map((author) => {
-      return {
+    authorList =  {
         '@type': 'Person',
-        name: author.name,
+        name: authorDetails.name,
       }
-    })
   } else {
     authorList = {
       '@type': 'Person',
-      name: siteMetadata.author,
+      name: 'George Barbu',
     }
   }
 
@@ -122,7 +120,7 @@ export const BlogSEO = ({
     },
     headline: title,
     image: featuredImages,
-    datePublished: publishedAt,
+    datePublished: publishedAtDate,
     dateModified: modifiedAt,
     author: authorList,
     publisher: {
@@ -149,8 +147,8 @@ export const BlogSEO = ({
         canonicalUrl={canonicalUrl}
       />
       <Head>
-        {date && <meta property="article:published_time" content={publishedAt} />}
-        {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
+        {publishedAt && <meta property="article:published_time" content={publishedAtDate} />}
+        {updatedAt && <meta property="article:modified_time" content={modifiedAt} />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

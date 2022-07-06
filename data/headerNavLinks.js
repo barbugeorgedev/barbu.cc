@@ -1,7 +1,8 @@
 const headerNavLinks = [
-  { href: '/blog', title: 'Blog' },
-  { href: '/projects', title: 'Projects' },
-  { href: '/about', title: 'About' },
+  { href: '/', title: 'Home', target: '_self' },
+  { href: '/blog', title: 'Blog', target: '_self' },
+  { href: '/projects', title: 'Projects', target: '_self' },
+  { href: 'https://george.barbu.cc', title: 'About', target: '_blank' },
 ]
 
 export default headerNavLinks

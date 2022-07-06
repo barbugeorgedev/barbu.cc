@@ -1,8 +1,11 @@
 import { gql } from "@apollo/client";
+import { CATEGORIES_POSTS_FIELDS, AUTHOR_POSTS_FIELDS } from '../fragments';
 
 export const QUERY_ALL_POSTS = gql`
+    ${CATEGORIES_POSTS_FIELDS}
+    ${AUTHOR_POSTS_FIELDS}
     query AllPosts {
-        posts(sort: "publishedAt:desc") {
+        posts(sort: "updatedAt:desc") {
             data {
                 id
                 attributes {
@@ -13,23 +16,9 @@ export const QUERY_ALL_POSTS = gql`
                     content
                     slug
                     preview
-                    categories {
-                        data {
-                            id
-                            attributes {
-                                name
-                            }
-                        }
-                    }
-                    author {
-                        data {
-                            id
-                            attributes {
-                                Name
-                            }
-                        }
-                    }
                     seoTitle
+                    ...CategoriesPostsFields
+                    ...AuthorPostsFields
                 }
             }
         }
@@ -37,7 +26,9 @@ export const QUERY_ALL_POSTS = gql`
 `;
 
 export const QUERY_POST_BY_SLUG = gql`
-    query Posts($slug: String!) {
+    ${CATEGORIES_POSTS_FIELDS}
+    ${AUTHOR_POSTS_FIELDS}
+    query Post($slug: String!) {
         findSlug(modelName: "post", slug: $slug) {
             ... on PostEntityResponse {
                 data {
@@ -50,23 +41,9 @@ export const QUERY_POST_BY_SLUG = gql`
                         content
                         slug
                         preview
-                        categories {
-                            data {
-                                id
-                                attributes {
-                                    name
-                                }
-                            }
-                        }
-                        author {
-                            data {
-                                id
-                                attributes {
-                                    Name
-                                }
-                            }
-                        }
                         seoTitle
+                        ...CategoriesPostsFields
+                        ...AuthorPostsFields
                     }
                 }
             }

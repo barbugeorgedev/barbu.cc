@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { ALL_PROJECTS_FIELDS } from '../fragments';
 
 export const QUERY_ALL_PROJECTS = gql`
   query AllProjects {

@@ -5,7 +5,7 @@ import { any } from "prop-types";
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import BlogLayout from '@layouts/BlogLayout'
-import Blog, { POSTS_PER_PAGE } from '../../blog'
+import { POSTS_PER_PAGE } from '@/pages/blog'
 
 import { getAllPosts } from "@/lib/apollo/posts";
 
@@ -15,23 +15,21 @@ export async function getStaticPaths() {
   const paths = Array.from({ length: totalPages }, (_, i) => ({
     params: { page: (i + 1).toString() },
   }))
-
   return {
     paths,
     fallback: false,
   }
 }
 
-export async function getStaticProps(context) {
-  const {
-    params: { page },
-  } = context
+export async function getStaticProps({ params }) {
   const posts = await getAllPosts();
-  const pageNumber = parseInt(page)
+  const pageNumber = parseInt(params.page)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
     POSTS_PER_PAGE * pageNumber
   )
+
+  const route = {name:'blog'}
   const pagination = {
     currentPage: pageNumber,
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
@@ -42,16 +40,18 @@ export async function getStaticProps(context) {
       posts,
       initialDisplayPosts,
       pagination,
+      route,
     },
   }
 }
 
-export default function PostPage({ posts, initialDisplayPosts, pagination }) {
+export default function PostPage({  posts, initialDisplayPosts, pagination, route }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <BlogLayout
         posts={posts}
+        route={route}
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}
         title="All Posts"
@@ -61,10 +61,10 @@ export default function PostPage({ posts, initialDisplayPosts, pagination }) {
 }
 
 
-Blog.defaultProps = {
+PostPage.defaultProps = {
   posts: {},
 };
 
-Blog.propTypes = {
+PostPage.propTypes = {
   posts: any,
 };

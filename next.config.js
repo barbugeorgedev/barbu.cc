@@ -53,8 +53,18 @@ const securityHeaders = [
 ]
 
 module.exports = withBundleAnalyzer({
+  experimental: {
+    concurrentFeatures: true,
+    serverComponents: true,
+    // runtime: 'edge',
+  },
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  images: {
+    domains: [
+      'res.cloudinary.com'
+    ],
+  },
   eslint: {
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },

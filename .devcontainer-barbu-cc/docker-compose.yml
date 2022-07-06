@@ -12,9 +12,9 @@ services:
     volumes:
       - '../.:/var/www/html'
     networks:
-      - devcontainer-cms-barbu-cc_strapi
+      - barbu-cc
     container_name: ${APP_NAME}_nodejs
 
 networks:
-  devcontainer-cms-barbu-cc_strapi:
+  barbu-cc:
     external: true

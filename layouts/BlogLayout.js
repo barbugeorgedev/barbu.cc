@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Pagination from '@/components/Pagination'
 import { formatDate } from "@lib/utils/datetime";
 
-export default function BlogLayout({ posts, title, initialDisplayPosts = [], pagination }) {
+export default function BlogLayout({ posts, title, route, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState('');
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent = frontMatter.attributes.title + frontMatter.attributes.summary + frontMatter.attributes.categories
@@ -71,7 +71,7 @@ export default function BlogLayout({ posts, title, initialDisplayPosts = [], pag
                       </h3>
                       <div className="flex flex-wrap">
                         {categories.data.map((category) => (
-                          <Category key={category} category={category} />
+                          <Category key={category.id} category={category} />
                         ))}
                       </div>
                     </div>
@@ -86,7 +86,7 @@ export default function BlogLayout({ posts, title, initialDisplayPosts = [], pag
         </ul>
       </div>
       {pagination && pagination.totalPages > 1 && !searchValue && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        <Pagination route={route} currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
       )}
     </>
   )

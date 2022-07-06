@@ -1,32 +1,24 @@
-import { object } from "prop-types";
+import PageTitle from '@/components/PageTitle'
+import fs from 'fs'
+import generateRss from '@/lib/generate-rss'
 
-import BlogLayout from "@layouts/legacy/BlogLayout";
 
-import { getAllPosts, getPostBySlug } from "@/lib/apollo/posts";
-import { markdownToHtml } from "@/lib/util";
-
-export default function Post({ content, post }) {
-
-  return (
-    <BlogLayout post={post}>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: content,
-        }}
-      />
-    </BlogLayout>
-  );
-}
+import {getAllPosts, getPostBySlug} from "@lib/apollo/posts";
+import {object} from "prop-types";
+import {markdownToHtml} from "@lib/util";
+import PostLayout from "@layouts/PostLayout";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
   const paths = posts
-    .filter((post) => typeof post?.attributes?.slug === "string")
-    .map((post) => ({
-      params: {
-        slug: post?.attributes?.slug,
-      },
-    }));
+      .filter((post) => typeof post?.attributes?.slug === "string")
+      .map((post) => (
+          {
+              params: {
+                  slug: post?.attributes?.slug,
+              },
+          })
+      );
 
   return {
     paths,
@@ -34,23 +26,60 @@ export async function getStaticPaths() {
   };
 }
 
+
+
+export async function getStaticProps({ params }) {
+    const post = await getPostBySlug(params.slug);
+    const content = (post?.attributes?.content || "");
+    const authorDetails = (post?.attributes?.author?.data?.attributes || "");
+    const allPosts = await getAllPosts();
+
+    const index = allPosts.findIndex(object => {
+        return object.id === post.id;
+    });
+
+    const prev = (Array.from(allPosts)[index-1] || null);
+    const next = (Array.from(allPosts)[index+1] || null);
+
+    // rss
+    if (allPosts.length > 0) {
+      const rss = generateRss(allPosts)
+      fs.writeFileSync('./public/feed.xml', rss)
+    }
+
+    return {
+        props: {
+            content,
+            post,
+            authorDetails,
+            prev,
+            next,
+        },
+        revalidate: 60 * 60 * 24,
+    };
+}
+
+export default function Post({ post, content, authorDetails, prev, next }) {
+
+  return (
+      <>
+        <PostLayout
+            frontMatter={post}
+            authorDetails={authorDetails}
+            prev={prev}
+            next={next}
+            content={content}
+        />
+      </>
+  )
+}
+
+
+
 Post.defaultProps = {
-  post: {},
+    post: {},
 };
 
 Post.propTypes = {
-  post: object,
+    post: object,
 };
-
-export async function getStaticProps({ params }) {
-  const post = await getPostBySlug(params.slug);
-  const content = await markdownToHtml(post?.attributes?.content || "");
-
-  return {
-    props: {
-      content,
-      post,
-    },
-    revalidate: 60 * 60 * 24,
-  };
-}
