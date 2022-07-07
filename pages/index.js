@@ -1,8 +1,6 @@
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
-import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { formatDate } from "@lib/utils/datetime";
 
 import NewsletterForm from '@/components/NewsletterForm'
 
@@ -11,6 +9,8 @@ const MAX_DISPLAY = 5
 
 
 export default function Home({ posts }) {
+  posts = [1,2,3];
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />

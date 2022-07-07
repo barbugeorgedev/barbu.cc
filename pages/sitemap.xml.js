@@ -1,6 +1,6 @@
 import moment from "moment";
 
-import { getAllPosts } from "@/lib/apollo/posts";
+import { getAllPosts } from "@/graphql/apollo/posts";
 
 const Sitemap = () => {};
 

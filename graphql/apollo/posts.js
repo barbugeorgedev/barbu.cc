@@ -1,4 +1,4 @@
-import { getApolloClient } from "./client";
+import { getApolloClient } from "../../lib/utils/apollo/client";
 import { QUERY_ALL_POSTS, QUERY_POST_BY_SLUG } from "@/graphql/queries/posts";
 
 export async function getAllPosts() {

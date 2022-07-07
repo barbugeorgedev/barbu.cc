@@ -9,14 +9,16 @@ import Head from 'next/head'
 
 import siteMetadata from '@/data/siteMetadata'
 import Analytics from '@/components/analytics'
-import Policies from '@/components/policies'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import { ClientReload } from '@/components/ClientReload'
+
+
+import { getTopMenu, getFooterMenu } from "@/graphql/apollo/globals";
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, topMenu, footerMenu }) {
     return (
         <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
             <Head>
@@ -24,9 +26,17 @@ export default function App({ Component, pageProps }) {
             </Head>
             {isDevelopment && isSocket && <ClientReload />}
             <Analytics />
-            <LayoutWrapper>
+            <LayoutWrapper topMenu={topMenu} footerMenu={footerMenu} >
                 <Component {...pageProps} />
             </LayoutWrapper>
         </ThemeProvider>
     )
+}
+
+
+App.getInitialProps = async () => {
+    const topMenu = await getTopMenu();
+    const footerMenu = await getFooterMenu();
+
+    return { topMenu, footerMenu }
 }

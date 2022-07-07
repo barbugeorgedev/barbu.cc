@@ -6,7 +6,7 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: development
-    command: bash -c "npm install depcheck --location=global  --force && sleep infinity"
+    command: bash -c "npx depcheck && sleep infinity"
     tty: true
     working_dir: '/var/www/html'
     volumes:

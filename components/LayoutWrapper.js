@@ -9,7 +9,7 @@ import ThemeSwitch from './ThemeSwitch'
 import * as PropTypes from "prop-types";
 
 
-const LayoutWrapper = ({ children }) => {
+const LayoutWrapper = ({ children, topMenu, footerMenu }) => {
   return (
 
     <SectionContainer>
@@ -32,13 +32,13 @@ const LayoutWrapper = ({ children }) => {
             </Link>
           </div>
           <div className="flex items-center text-base leading-5">
-            <Navbar />
+            <Navbar topMenu={topMenu.attributes.TopMenu} />
             <ThemeSwitch />
             <MobileNav />
           </div>
         </header>
         <main className="mb-auto">{children}</main>
-        <Footer />
+        <Footer footerMenu={footerMenu.attributes.FooterMenu}/>
       </div>
     </SectionContainer>
   )

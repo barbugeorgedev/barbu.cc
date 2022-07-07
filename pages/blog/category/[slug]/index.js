@@ -6,7 +6,7 @@ import BlogLayout from '@/layouts/BlogLayout'
 import { PageSEO } from '@/components/SEO'
 import { POSTS_PER_PAGE } from '@/pages/blog'
 
-import {getAllCategories, getCategoryBySlug} from "@lib/apollo/categories";
+import {getAllCategories, getCategoryBySlug} from "@/graphql/apollo/categories";
 
 
 export async function getStaticPaths() {

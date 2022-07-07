@@ -2,7 +2,7 @@ import Link from '../Link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@components/icons/social-icons'
 
-export default function Footer() {
+export default function Footer({footerMenu}) {
   return (
     <footer>
       <div className="mt-16 flex flex-col items-center">
@@ -12,9 +12,9 @@ export default function Footer() {
           <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size="6" />
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/">Cookie Policy</a>
-          <div> • </div>
-          <a href="/">Privacy Policy</a>
+          {footerMenu.map((menu) => (
+               <Link href={menu.link} target={menu.target} key={menu.name}>{menu.name}</Link>
+          ))}
         </div>
         <div className="mb-8 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>{`© ${new Date().getFullYear()}`}</div>

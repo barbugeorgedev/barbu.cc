@@ -7,7 +7,7 @@ import siteMetadata from '@/data/siteMetadata'
 import BlogLayout from '@layouts/BlogLayout'
 import { POSTS_PER_PAGE } from '@/pages/blog'
 
-import { getAllPosts } from "@/lib/apollo/posts";
+import { getAllPosts } from "@/graphql/apollo/posts";
 
 export async function getStaticPaths() {
   const totalPosts =  await getAllPosts();

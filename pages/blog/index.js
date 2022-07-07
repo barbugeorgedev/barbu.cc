@@ -1,5 +1,5 @@
 import { any } from "prop-types";
-import { getAllPosts } from "@/lib/apollo/posts";
+import { getAllPosts } from "@/graphql/apollo/posts";
 
 import siteMetadata from '@/data/siteMetadata'
 import BlogLayout from '@/layouts/BlogLayout'

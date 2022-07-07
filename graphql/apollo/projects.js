@@ -1,4 +1,4 @@
-import { getApolloClient } from "./client";
+import { getApolloClient } from "../../lib/utils/apollo/client";
 import { QUERY_ALL_PROJECTS } from "@/graphql/queries/projects";
 
 export async function getAllProjects() {
