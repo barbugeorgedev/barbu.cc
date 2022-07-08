@@ -15,17 +15,16 @@ export default function NavItem({ menu }) {
     }, []);
 
     return (
-        <Link href={menu.link}
-              target={menu.target}
-              scroll={false}>
-            <a
-                className={`${
-                    isActive
-                        ? "text-gray-900 dark:text-gray-100"
-                        : "text-gray-600 dark:text-gray-300"
-                } p-1 font-medium dark:text-gray-100 sm:p-4`}>
-                <span className="capsize">{menu.name}</span>
-            </a>
-        </Link>
+        <a
+            className={`${
+                isActive
+                    ? "text-gray-900 dark:text-gray-100"
+                    : "text-gray-600 dark:text-gray-300"
+            } p-1 font-medium sm:p-4`}
+            href={menu.link}
+            target={`_${menu.target}`}
+        >
+            <span className="capsize">{menu.name}</span>
+        </a>
     );
 }

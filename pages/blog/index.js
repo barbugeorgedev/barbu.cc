@@ -4,7 +4,6 @@ import { getAllPosts } from "@/graphql/apollo/posts";
 import siteMetadata from '@/data/siteMetadata'
 import BlogLayout from '@/layouts/BlogLayout'
 import { PageSEO } from '@/components/SEO'
-
 export const POSTS_PER_PAGE = 5
 
 export async function getStaticProps() {

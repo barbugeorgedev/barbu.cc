@@ -11,7 +11,6 @@ import * as PropTypes from "prop-types";
 
 const LayoutWrapper = ({ children, topMenu, footerMenu }) => {
   return (
-
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
         <header className="flex items-center justify-between py-10">
@@ -32,7 +31,7 @@ const LayoutWrapper = ({ children, topMenu, footerMenu }) => {
             </Link>
           </div>
           <div className="flex items-center text-base leading-5">
-            <Navbar topMenu={topMenu.attributes.TopMenu} />
+          <Navbar topMenu={topMenu.attributes.TopMenu} />
             <ThemeSwitch />
             <MobileNav />
           </div>

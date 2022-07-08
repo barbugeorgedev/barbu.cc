@@ -14,11 +14,12 @@ import { ClientReload } from '@/components/ClientReload'
 
 
 import { getTopMenu, getFooterMenu } from "@/graphql/apollo/globals";
+import { getAuthorsById } from "@/graphql/apollo/authors";
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
 
-export default function App({ Component, pageProps, topMenu, footerMenu }) {
+function App({ Component, pageProps, topMenu, footerMenu, admin }) {
     return (
         <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
             <Head>
@@ -26,7 +27,7 @@ export default function App({ Component, pageProps, topMenu, footerMenu }) {
             </Head>
             {isDevelopment && isSocket && <ClientReload />}
             <Analytics />
-            <LayoutWrapper topMenu={topMenu} footerMenu={footerMenu} >
+            <LayoutWrapper topMenu={topMenu} footerMenu={footerMenu} authorMetaData={admin} >
                 <Component {...pageProps} />
             </LayoutWrapper>
         </ThemeProvider>
@@ -34,9 +35,16 @@ export default function App({ Component, pageProps, topMenu, footerMenu }) {
 }
 
 
-App.getInitialProps = async () => {
+App.getInitialProps = async (context) => {
+
     const topMenu = await getTopMenu();
     const footerMenu = await getFooterMenu();
+    const admin = await getAuthorsById(1); 
+    
+    const store = { admin };
+    const componentProps = context?.Component?.getInitialProps ? await context?.Component?.getInitialProps({ ...context, store }) : {};
+    return { props: { initialReduxState: store, ...componentProps }, topMenu, footerMenu}
 
-    return { topMenu, footerMenu }
 }
+
+export default App

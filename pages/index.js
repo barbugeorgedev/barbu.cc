@@ -7,7 +7,6 @@ import NewsletterForm from '@/components/NewsletterForm'
 const MAX_DISPLAY = 5
 
 
-
 export default function Home({ posts }) {
   posts = [1,2,3];
 
@@ -45,3 +44,4 @@ export default function Home({ posts }) {
     </>
   )
 }
+
