@@ -36,11 +36,10 @@ function App({ Component, pageProps, topMenu, footerMenu, admin }) {
 
 
 App.getInitialProps = async (context) => {
-
     const topMenu = await getTopMenu();
     const footerMenu = await getFooterMenu();
     const admin = await getAuthorsById(1); 
-    
+
     const store = { admin };
     const componentProps = context?.Component?.getInitialProps ? await context?.Component?.getInitialProps({ ...context, store }) : {};
     return { props: { initialReduxState: store, ...componentProps }, topMenu, footerMenu}

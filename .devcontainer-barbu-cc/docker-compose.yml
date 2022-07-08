@@ -1,12 +1,16 @@
 version: '3.8'
 services:
   nodejs:
-    image: node:${NODE_VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
-      NODE_ENV: development
-    command: bash -c "npx depcheck && sleep infinity"
+      NODE_VERSION: ${NODE_VERSION}
+      NODE_ENV: ${NODE_ENV}
+      DOPPLER_TOKEN: ${DOPPLER_TOKEN_API}
+    command: bash -c "npm install depcheck --location=global  --force && sleep infinity"
     tty: true
     working_dir: '/var/www/html'
     volumes:
