@@ -10,7 +10,7 @@ import * as PropTypes from "prop-types";
 
 
 const LayoutWrapper = ({ children, topMenu, footerMenu }) => {
-  console.log('LayoutWrapper', topMenu)
+
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
