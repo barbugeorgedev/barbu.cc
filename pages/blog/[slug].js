@@ -3,7 +3,7 @@ import fs from 'fs'
 import generateRss from '@/lib/generate-rss'
 
 
-import {getAllPosts, getPostBySlug} from "@/graphql/apollo/posts";
+import {getAllPosts, getPostBySlug} from "@graphql/apollo/posts";
 import {object} from "prop-types";
 import {markdownToHtml} from "@lib/util";
 import PostLayout from "@layouts/PostLayout";

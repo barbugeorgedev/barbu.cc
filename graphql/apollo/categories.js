@@ -1,5 +1,5 @@
-import { getApolloClient } from "@lib/utils/apollo/client";
-import { QUERY_ALL_CATEGORIES, QUERY_CATEGORY_BY_SLUG } from "@/graphql/queries/categories";
+import { getApolloClient } from "@apolloClient";
+import { QUERY_ALL_CATEGORIES, QUERY_CATEGORY_BY_SLUG } from "@graphql/queries/categories";
 
 export async function getAllCategories() {
   const apolloClient = getApolloClient();

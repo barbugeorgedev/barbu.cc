@@ -10,7 +10,9 @@
       "@data/*": ["data/*"],
       "@layouts/*": ["layouts/*"],
       "@lib/*": ["lib/*"],
-      "@styles/*": ["styles/*"]
+      "@graphql/*": ["graphql/*"],
+      "@styles/*": ["styles/*"],
+      "@apolloClient": ["lib/utils/apollo/client"]
     }
   },
   "exclude": ["node_modules", ".next"]

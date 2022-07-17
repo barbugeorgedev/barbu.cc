@@ -1,5 +1,5 @@
-import { getApolloClient } from "@lib/utils/apollo/client";
-import { QUERY_ALL_RECOMMENDED_BLOGS } from "@/graphql/queries/recommendedBlogs";
+import { getApolloClient } from "@apolloClient";
+import { QUERY_ALL_RECOMMENDED_BLOGS } from "@graphql/queries/recommendedBlogs";
 
 export async function getAllRecommendedBlogs() {
   const apolloClient = getApolloClient();

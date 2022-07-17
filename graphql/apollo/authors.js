@@ -1,5 +1,5 @@
-import { getApolloClient } from "@lib/utils/apollo/client";
-import { QUERY_ALL_AUTHORS, QUERY_AUTHOR_BY_ID } from "@/graphql/queries/authors";
+import { getApolloClient } from "@apolloClient";
+import { QUERY_ALL_AUTHORS, QUERY_AUTHOR_BY_ID } from "@graphql/queries/authors";
 
 export async function getAllAuthors() {
   const apolloClient = getApolloClient();

@@ -1,5 +1,5 @@
-import { getApolloClient } from "@lib/utils/apollo/client";
-import { QUERY_ALL_TECHNOLOGIES } from "@/graphql/queries/technolgies";
+import { getApolloClient } from "@apolloClient";
+import { QUERY_ALL_TECHNOLOGIES } from "@graphql/queries/technolgies";
 
 export async function getAllTechnologies() {
   const apolloClient = getApolloClient();
