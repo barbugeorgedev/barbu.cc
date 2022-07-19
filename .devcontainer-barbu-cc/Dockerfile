@@ -10,6 +10,4 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
     apt-get update && \
     apt-get -y install doppler
     
-# Fetch and view secrets using "printenv". Testing purposes only!
-# Replace "printenv" with the command used to start your app, e.g. "npm", "start"
-CMD ["doppler", "run", "--", "printenv"]
+ENTRYPOINT  ["doppler", "run", "--"]
