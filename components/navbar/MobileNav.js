@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import Link from './Link'
-import headerNavLinks from '@/data/headerNavLinks'
+import Link from '../Link'
 
-const MobileNav = () => {
+const MobileNav = ({topMenu}) => {
   const [navShow, setNavShow] = useState(false)
 
   const onToggleNav = () => {
@@ -65,15 +64,15 @@ const MobileNav = () => {
           </button>
         </div>
         <nav className="fixed mt-8 h-full">
-          {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
+          {topMenu.map((link) => (
+            <div key={link.name} className="px-12 py-4">
               <Link
                 href={link.href}
-                target={link.target}
+                target={`_${link.target}`}
                 className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
-                {link.title}
+                {link.name}
               </Link>
             </div>
           ))}

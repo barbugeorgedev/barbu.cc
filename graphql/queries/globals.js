@@ -8,7 +8,7 @@ export const QUERY_TOP_MENU = gql`
                 attributes {
                     TopMenu {
                         name
-                        link
+                        href
                         target
                     }
                 }
@@ -17,6 +17,23 @@ export const QUERY_TOP_MENU = gql`
     }
 `;
 
+export const QUERY_SEARCH_MENU = gql`
+    query SearchMenu {
+        global {
+            data {
+                attributes {
+                    SearchMenu {
+                        name
+                        href
+                        target
+                    }
+                }
+            }
+        }
+    }
+`;
+
+
 export const QUERY_FOOTER_MENU = gql`
     query FooterMenu {
         global {
@@ -24,7 +41,7 @@ export const QUERY_FOOTER_MENU = gql`
                 attributes {
                     FooterMenu {
                         name
-                        link
+                        href
                         target
                     }
                 }

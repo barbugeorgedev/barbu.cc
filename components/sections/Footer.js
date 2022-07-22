@@ -1,25 +1,25 @@
 import Link from '../Link'
 import siteMetadata from '@/data/siteMetadata'
-import SocialIcon from '@components/icons/social-icons'
+import { SocialIcon } from '@components/icons'
+import { currentDayName } from '@lib/utils/datetime'
+
 
 export default function Footer({footerMenu}) {
   return (
     <footer>
-      <div className="mt-16 flex flex-col items-center">
-        <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size="6" />
-          <SocialIcon kind="github" href={siteMetadata.github} size="6" />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size="6" />
+      <div className="flex flex-col items-center justify-between md:flex-row mt-10 mb-4">
+        <div className="flex mb-3 space-x-4">
+          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size="5" />
+          <SocialIcon kind="github" href={siteMetadata.github} size="5" />
+          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size="5" />
         </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          {footerMenu.map((menu) => (
-               <Link href={menu.link} target={menu.target} key={menu.name}>{menu.name}</Link>
-          ))}
-        </div>
-        <div className="mb-8 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{`| Developed by`}</div>
+        <div className="flex mb-3 space-x-2 text-sm text-gray-500 dark:text-gray-400">
+          <div>{`Developed by`}</div>
           <Link href={siteMetadata.authorUrl}>{siteMetadata.author}</Link>
+          <div>{`|`}</div> 
+          <Link href="https://qod.barbu.cc" className="link-underline">
+              {`Have a good ${currentDayName()}!`}
+          </Link>
         </div>
       </div>
     </footer>

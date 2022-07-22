@@ -11,7 +11,7 @@ export default function NavItem({ menu }) {
 
 
     useEffect(() => {
-        setIsActive(router.asPath === menu.link);
+        setIsActive(router.asPath === menu.href);
     }, []);
 
     return (
@@ -21,7 +21,7 @@ export default function NavItem({ menu }) {
                     ? "text-gray-900 dark:text-gray-100"
                     : "text-gray-600 dark:text-gray-300"
             } p-1 font-medium sm:p-4`}
-            href={menu.link}
+            href={menu.href}
             target={`_${menu.target}`}
         >
             <span className="capsize">{menu.name}</span>

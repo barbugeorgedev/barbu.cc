@@ -3,13 +3,15 @@ import Logo from '@/data/logo.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './sections/Footer'
-import MobileNav from './MobileNav'
+import MobileNav from './navbar/MobileNav'
 import Navbar from '@components/navbar/Navbar'
 import ThemeSwitch from './ThemeSwitch'
+import CommandPalette from '@components/navbar/CommandPalette'
+import NowPlaying from '@components/spotify/NowPlaying'
 import * as PropTypes from "prop-types";
 
 
-const LayoutWrapper = ({ children, topMenu, footerMenu }) => {
+const LayoutWrapper = ({ children, topMenu, footerMenu, fullMenu }) => {
 
   return (
     <SectionContainer>
@@ -33,11 +35,13 @@ const LayoutWrapper = ({ children, topMenu, footerMenu }) => {
           </div>
           <div className="flex items-center text-base leading-5">
           <Navbar topMenu={topMenu.attributes.TopMenu} />
-            <ThemeSwitch />
-            <MobileNav />
+          <CommandPalette navigation={fullMenu} />
+          <ThemeSwitch />
+          <MobileNav topMenu={topMenu.attributes.TopMenu}/>
           </div>
         </header>
         <main className="mb-auto">{children}</main>
+        <NowPlaying />
         <Footer footerMenu={footerMenu.attributes.FooterMenu}/>
       </div>
     </SectionContainer>

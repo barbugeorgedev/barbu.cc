@@ -13,13 +13,13 @@ import LayoutWrapper from '@/components/LayoutWrapper'
 import { ClientReload } from '@/components/ClientReload'
 
 
-import { getTopMenu, getFooterMenu } from "@graphql/apollo/globals";
+import { getTopMenu, getFooterMenu, getSearchMenu } from "@graphql/apollo/globals";
 import { getAuthorsById } from "@graphql/apollo/authors";
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
 
-function App({ Component, pageProps, topMenu, footerMenu, admin }) {
+function App({ Component, pageProps, topMenu, footerMenu, fullMenu, admin }) {
     return (
         <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
             <Head>
@@ -27,7 +27,7 @@ function App({ Component, pageProps, topMenu, footerMenu, admin }) {
             </Head>
             {isDevelopment && isSocket && <ClientReload />}
             <Analytics />
-            <LayoutWrapper topMenu={topMenu} footerMenu={footerMenu} authorMetaData={admin} >
+            <LayoutWrapper topMenu={topMenu} footerMenu={footerMenu} authorMetaData={admin}  fullMenu={fullMenu} >
                 <Component {...pageProps} />
             </LayoutWrapper>
         </ThemeProvider>
@@ -36,13 +36,16 @@ function App({ Component, pageProps, topMenu, footerMenu, admin }) {
 
 
 App.getInitialProps = async (context) => {
+  
     const topMenu = await getTopMenu();
+    const searchMenu = await getSearchMenu();
     const footerMenu = await getFooterMenu();
     const admin = await getAuthorsById(1); 
+    const fullMenu = [...topMenu.attributes.TopMenu, ...searchMenu.attributes.SearchMenu, ...footerMenu.attributes.FooterMenu];
 
     const store = { admin };
     const componentProps = context?.Component?.getInitialProps ? await context?.Component?.getInitialProps({ ...context, store }) : {};
-    return { props: { initialReduxState: store, ...componentProps }, topMenu, footerMenu}
+    return { props: { initialReduxState: store, ...componentProps }, topMenu, footerMenu, fullMenu}
 
 }
 

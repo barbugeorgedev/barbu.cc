@@ -25,6 +25,10 @@ function Projects() {
                 description={d.description}
                 imgSrc={d.imgSrc}
                 href={d.href}
+                github={d.github}
+                tech1={d.tech1}
+                tech2={d.tech2}
+                tech3={d.tech3}
               />
             ))}
           </div>

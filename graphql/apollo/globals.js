@@ -1,5 +1,5 @@
 import { getApolloClient } from "@apolloClient";
-import {QUERY_TOP_MENU, QUERY_FOOTER_MENU} from "@graphql/queries/globals";
+import {QUERY_TOP_MENU, QUERY_SEARCH_MENU, QUERY_FOOTER_MENU} from "@graphql/queries/globals";
 
 export async function getTopMenu() {
   const apolloClient = getApolloClient();
@@ -11,6 +11,17 @@ export async function getTopMenu() {
   return menu;
 }
 
+export async function getSearchMenu() {
+  const apolloClient = getApolloClient();
+
+  const data = await apolloClient.query({
+    query: QUERY_SEARCH_MENU,
+  });
+
+  const menu = data?.data?.global?.data;
+
+  return menu;
+}
 
 export async function getFooterMenu() {
   const apolloClient = getApolloClient();
