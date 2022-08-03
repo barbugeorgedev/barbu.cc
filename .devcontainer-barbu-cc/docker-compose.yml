@@ -9,7 +9,7 @@ services:
     environment:
       NODE_VERSION: ${NODE_VERSION}
       NODE_ENV: ${NODE_ENV}
-      DOPPLER_TOKEN: ${DOPPLER_TOKEN_NAME}
+      DOPPLER_TOKEN: ${DOPPLER_TOKEN_NAME_TMP}
     command: bash -c "npm install depcheck --location=global  --force && sleep infinity"
     tty: true
     working_dir: '/var/www/html'

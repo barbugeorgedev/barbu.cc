@@ -1,4 +1,5 @@
 import Link from "next/link";
+import classNames from 'classnames'
 import { useRouter } from "next/router";
 
 import { string } from "prop-types";
@@ -15,16 +16,19 @@ export default function NavItem({ menu }) {
     }, []);
 
     return (
+
         <a
-            className={`${
-                isActive
-                    ? "text-gray-900 dark:text-gray-100"
-                    : "text-gray-600 dark:text-gray-300"
-            } p-1 font-medium sm:p-4`}
+            className={`${classNames('horizontal-underline text-base', {
+            'horizontal-underline-active': setIsActive,
+            })}p-1 font-medium sm:p-2`}
+            aria-label={menu.name}
             href={menu.href}
             target={`_${menu.target}`}
         >
-            <span className="capsize">{menu.name}</span>
+            <span className="capsize font-bold tracking-wide text-gray-900 dark:text-gray-100">
+            {menu.name}
+            </span>
         </a>
+
     );
 }

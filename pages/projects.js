@@ -3,7 +3,7 @@ import projectsData from '@/data/projectsData'
 import Card from '@/components/Card'
 import { PageSEO } from '@/components/SEO'
 
-function Projects() {
+const Projects = () => {
   return (
     <>
       <PageSEO title={`Projects - ${siteMetadata.author}`} description={siteMetadata.description} />
@@ -40,7 +40,11 @@ function Projects() {
 
 
 Projects.getInitialProps = async ({ store }) => {
-
+  return {
+    props: {
+      store: store || null
+    }
+  };
 }
 
 export default Projects

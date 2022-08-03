@@ -7,19 +7,19 @@
       <language>en-us</language>
       <managingEditor>george@barbu.cc (George Barbu)</managingEditor>
       <webMaster>george@barbu.cc (George Barbu)</webMaster>
-      <lastBuildDate>Tue, 19 Jul 2022 09:08:48 GMT</lastBuildDate>
+      <lastBuildDate>Tue, 19 Jul 2022 09:08:44 GMT</lastBuildDate>
       <atom:link href="https://barbu.cc/feed.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://barbu.cc/blog/why-you-should-or-shouldn-t-save-data-with-unity-s-player-prefs</guid>
+    <guid>https://barbu.cc/blog/creating-split-otp-input-fields-in-react-native</guid>
     <title>undefined</title>
-    <link>https://barbu.cc/blog/why-you-should-or-shouldn-t-save-data-with-unity-s-player-prefs</link>
-    <preview>With Unity's PlayerPrefs class, you can have an easy-to-use interface that allows you to start persisting some data!
-The post Why you should (or shouldn’t) save data with Unity’s <code>PlayerPrefs</code> appeared first on LogRocket Blog.</preview>
-    <content><p>With Unity's PlayerPrefs class, you can have an easy-to-use interface that allows you to start persisting some data!</p>
-<p>The post <a rel="nofollow" href="https://blog.logrocket.com/why-should-shouldnt-save-data-unitys-playerprefs/">Why you should (or shouldn’t) save data with Unity’s &lt;code&gt;PlayerPrefs&lt;/code&gt;</a> appeared first on <a rel="nofollow" href="https://blog.logrocket.com">LogRocket Blog</a>.</p>
+    <link>https://barbu.cc/blog/creating-split-otp-input-fields-in-react-native</link>
+    <preview>OTPs can be a daunting task because of the TextInput required. We can split the display to create one box for each OTP digit. 
+The post Creating split OTP input fields in React Native appeared first on LogRocket Blog.</preview>
+    <content><p>OTPs can be a daunting task because of the TextInput required. We can split the display to create one box for each OTP digit. </p>
+<p>The post <a rel="nofollow" href="https://blog.logrocket.com/creating-split-otp-input-fields-react-native/">Creating split OTP input fields in React Native</a> appeared first on <a rel="nofollow" href="https://blog.logrocket.com">LogRocket Blog</a>.</p>
 </content>
-    <pubDate>Tue, 19 Jul 2022 09:08:48 GMT</pubDate>
+    <pubDate>Tue, 19 Jul 2022 09:08:44 GMT</pubDate>
     <author>george@barbu.cc (George Barbu)</author>
     undefined
   </item>
@@ -39,15 +39,15 @@ The post Getting started with MUI and Next.js appeared first on LogRocket Blog.<
   </item>
 
   <item>
-    <guid>https://barbu.cc/blog/creating-split-otp-input-fields-in-react-native</guid>
+    <guid>https://barbu.cc/blog/why-you-should-or-shouldn-t-save-data-with-unity-s-player-prefs</guid>
     <title>undefined</title>
-    <link>https://barbu.cc/blog/creating-split-otp-input-fields-in-react-native</link>
-    <preview>OTPs can be a daunting task because of the TextInput required. We can split the display to create one box for each OTP digit. 
-The post Creating split OTP input fields in React Native appeared first on LogRocket Blog.</preview>
-    <content><p>OTPs can be a daunting task because of the TextInput required. We can split the display to create one box for each OTP digit. </p>
-<p>The post <a rel="nofollow" href="https://blog.logrocket.com/creating-split-otp-input-fields-react-native/">Creating split OTP input fields in React Native</a> appeared first on <a rel="nofollow" href="https://blog.logrocket.com">LogRocket Blog</a>.</p>
+    <link>https://barbu.cc/blog/why-you-should-or-shouldn-t-save-data-with-unity-s-player-prefs</link>
+    <preview>With Unity's PlayerPrefs class, you can have an easy-to-use interface that allows you to start persisting some data!
+The post Why you should (or shouldn’t) save data with Unity’s <code>PlayerPrefs</code> appeared first on LogRocket Blog.</preview>
+    <content><p>With Unity's PlayerPrefs class, you can have an easy-to-use interface that allows you to start persisting some data!</p>
+<p>The post <a rel="nofollow" href="https://blog.logrocket.com/why-should-shouldnt-save-data-unitys-playerprefs/">Why you should (or shouldn’t) save data with Unity’s &lt;code&gt;PlayerPrefs&lt;/code&gt;</a> appeared first on <a rel="nofollow" href="https://blog.logrocket.com">LogRocket Blog</a>.</p>
 </content>
-    <pubDate>Tue, 19 Jul 2022 09:08:44 GMT</pubDate>
+    <pubDate>Tue, 19 Jul 2022 09:08:48 GMT</pubDate>
     <author>george@barbu.cc (George Barbu)</author>
     undefined
   </item>
