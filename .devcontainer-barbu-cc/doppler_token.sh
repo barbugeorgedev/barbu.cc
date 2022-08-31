@@ -1,12 +1,15 @@
 #!/bin/bash
 
 # Export env vars
-export $(grep -v '^#' .env | xargs)
+export $(grep -v '^#' .doppler | xargs)
 
-declare DOPPLER_TOKEN_API_NAME="${APP_NAME}_DOPPLER_TOKEN"
+if [ -z ${DOPPLER_TOKEN+x} ]; 
+then 
+    [ -n "$1" ] && DOPPLER_TOKEN=$1 || { 
+        echo -n "Enter your DOPPLER_TOKEN: ";
+        read DOPPLER_TOKEN; 
+        echo "DOPPLER_TOKEN=${DOPPLER_TOKEN}" | tee .doppler
+    }
+fi
 
-[ -n "$1" ] && DOPPLER_TOKEN_TMP=$1 || { echo -n "Enter your DOPPLER_TOKEN: "; read DOPPLER_TOKEN; }
-
-export ${DOPPLER_TOKEN_API_NAME}=$DOPPLER_TOKEN_TMP
-
-WSLENV=$WSLENV:${DOPPLER_TOKEN_API_NAME}/p bash.exe
+DOPPLER_TOKEN=$DOPPLER_TOKEN docker-compose up --build
