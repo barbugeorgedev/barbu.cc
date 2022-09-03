@@ -1,8 +1,5 @@
-import Link from "next/link";
 import classNames from 'classnames'
 import { useRouter } from "next/router";
-
-import { string } from "prop-types";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -12,7 +9,7 @@ export default function NavItem({ menu }) {
 
 
     useEffect(() => {
-        setIsActive(router.asPath === menu.href);
+        setIsActive(router.asPath === menu?.attributes?.url);
     }, []);
 
     return (
@@ -21,12 +18,12 @@ export default function NavItem({ menu }) {
             className={`${classNames('horizontal-underline text-base', {
             'horizontal-underline-active': setIsActive,
             })}p-1 font-medium sm:p-2`}
-            aria-label={menu.name}
-            href={menu.href}
-            target={`_${menu.target}`}
+            aria-label={menu?.attributes?.title}
+            href={menu?.attributes?.url}
+            target={`_${menu?.attributes?.target}`}
         >
             <span className="capsize font-bold tracking-wide text-gray-900 dark:text-gray-100">
-            {menu.name}
+            {menu?.attributes?.title}
             </span>
         </a>
 
