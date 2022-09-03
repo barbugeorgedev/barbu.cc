@@ -4,8 +4,7 @@ import { SocialIcon } from '@components/icons'
 import { currentDayName } from '@lib/utils/datetime'
 
 
-const Footer = ({footerMenu, store}) => {
-  console.log('store', store);
+const Footer = () => {
   return (
     <footer>
       <div className="flex flex-col items-center justify-between md:flex-row mt-10 mb-4">
@@ -27,15 +26,6 @@ const Footer = ({footerMenu, store}) => {
       </div>
     </footer>
   )
-}
-
-Footer.getInitialProps = async ({ appContext }) => {
-console.log('appContext', appContext);
-  return {
-    props: {
-      data: appContext || null
-    }
-  };
 }
 
 export default Footer

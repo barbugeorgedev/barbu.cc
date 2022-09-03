@@ -1,7 +1,8 @@
-import { useState } from 'react'
 import Link from '../Link'
+import { useState } from 'react'
 
-const MobileNav = ({topMenu}) => {
+
+const MobileNav = ({menu}) => {
   const [navShow, setNavShow] = useState(false)
 
   const onToggleNav = () => {
@@ -15,6 +16,8 @@ const MobileNav = ({topMenu}) => {
       return !status
     })
   }
+
+  const menuData = (menu) ? menu[0] : [];
 
   return (
     <div className="sm:hidden">
@@ -64,15 +67,15 @@ const MobileNav = ({topMenu}) => {
           </button>
         </div>
         <nav className="fixed mt-8 h-full">
-          {topMenu.map((link) => (
-            <div key={link.name} className="px-12 py-4">
+          {menuData.map((link) => (
+            <div key={link?.attributes?.title} className="px-12 py-4">
               <Link
-                href={link.href}
-                target={`_${link.target}`}
+                href={link?.attributes?.url}
+                target={`_${link?.attributes?.target}`}
                 className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
-                {link.name}
+                {link?.attributes?.title}
               </Link>
             </div>
           ))}

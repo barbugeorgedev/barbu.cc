@@ -15,24 +15,28 @@ import LayoutWrapper from '@layouts/LayoutWrapper'
 import { ClientReload } from '@components/ClientReload'
 
 
-import { getTopMenu, getFooterMenu, getSearchMenu } from "@graphql/apollo/globals";
-import { getAuthorsById } from "@graphql/apollo/authors";
+import { ApolloProvider } from "@apollo/client";
+import { getApolloClient } from "@apolloClient";
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
 
-function MyApp({ Component, pageProps, topMenu, fullMenu, admin, store }) {
+function MyApp({ Component, pageProps, store }) {
+    const client = getApolloClient();
+
     return (
-        <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
-            <Head>
-                <meta content="width=device-width, initial-scale=1" name="viewport" />
-            </Head>
-            {isDevelopment && isSocket && <ClientReload />}
-            <Analytics />
-            <LayoutWrapper topMenu={topMenu} authorMetaData={admin}  fullMenu={fullMenu} >
-                <Component {...pageProps} />
-            </LayoutWrapper>
-        </ThemeProvider>
+        <ApolloProvider client={client}>
+            <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+                <Head>
+                    <meta content="width=device-width, initial-scale=1" name="viewport" />
+                </Head>
+                {isDevelopment && isSocket && <ClientReload />}
+                <Analytics />
+                <LayoutWrapper>
+                    <Component {...pageProps} />
+                </LayoutWrapper>
+            </ThemeProvider>
+        </ApolloProvider>
     )
 }
 
@@ -40,18 +44,9 @@ function MyApp({ Component, pageProps, topMenu, fullMenu, admin, store }) {
 MyApp.getInitialProps = async (appContext) => {
   
     const appProps = await App.getInitialProps(appContext);
+    const store = [];
 
-    const topMenu = await getTopMenu();
-    const searchMenu = await getSearchMenu();
-    const footerMenu = await getFooterMenu();
-    const admin = await getAuthorsById(1); 
-    const fullMenu = [...topMenu.attributes.TopMenu, ...searchMenu.attributes.SearchMenu, ...footerMenu.attributes.FooterMenu];
-
-    const store = { admin };
-    // const componentProps = context?.Component?.getInitialProps ? await context?.Component?.getInitialProps({ ...context, store }) : {};
-    // return { props: { ...componentProps, store }, topMenu, footerMenu, fullMenu}
-
-    return { ...appProps, store, topMenu, footerMenu, fullMenu }
+    return { ...appProps, store}
 }
 
 export default MyApp

@@ -1,12 +1,28 @@
-import NavItem from "@components/navbar/NavItem";
+import DesktopNavbar from "@components/navbar/DesktopNavbar";
+import CommandPalette from "@components/navbar/CommandPalette";
+import ThemeSwitch from "@components/navbar/ThemeSwitch";
+import MobileNav from "@components/navbar/MobileNav";
+import { useQuery } from "@apollo/client";
+import {QUERY_MENUS} from "@graphql/queries/menus";
 
-const Navbar = ({topMenu}) => {
+const Navbar = () => {
+        const { data, loading, error } = useQuery(QUERY_MENUS, { ssr: true });
+
+        const topMenu = data?.menusMenus?.data.map((menus) => (
+                menus?.attributes?.items?.data.filter((menu) => (menu?.attributes?.parent?.data?.attributes?.title === 'TopMenu'))
+            ));
+
+        const searchMenu = data?.menusMenus?.data.map((menus) => (
+            menus?.attributes?.items?.data.filter((menu) => (menu?.attributes?.parent?.data?.attributes?.title === 'SearchMenu'))
+        ));
+
     return (
-        <div className="hidden sm:block">
-          {topMenu.map((link) => (
-                <NavItem menu={link} key={link.name}/>
-          ))}
-        </div>
+        <>
+            <DesktopNavbar menu={topMenu} />
+            <CommandPalette menu={searchMenu}/>
+            <ThemeSwitch />
+            <MobileNav menu={topMenu} />
+        </>
     )
 }
 
